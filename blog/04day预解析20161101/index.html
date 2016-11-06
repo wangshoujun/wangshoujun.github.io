@@ -1,0 +1,884 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="个人博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="预解析
+在代码整体执行之前，先解析一部分。
+预解析之后，代码才会从上往下依次整体执行，但是预解析执行过的代码不会重复执行。
+js中预解析会把声明部分的代码预先执行。
+
+声明相关的代码可以分为两部分：
+变量声明 ==&amp;gt; 通过var关键字定义的变量。
+函数声明 ==&amp;gt; 通过function关键字声明的函数。
+
+变量声明提升的特点:
+在声明变量的前面，可以使用这个变量
+
+1234567891">
+<meta property="og:type" content="article">
+<meta property="og:title" content="04. 预解析">
+<meta property="og:url" content="https://github.com/wangshoujun/blog/04day预解析20161101/index.html">
+<meta property="og:site_name" content="王守军的个人博客">
+<meta property="og:description" content="预解析
+在代码整体执行之前，先解析一部分。
+预解析之后，代码才会从上往下依次整体执行，但是预解析执行过的代码不会重复执行。
+js中预解析会把声明部分的代码预先执行。
+
+声明相关的代码可以分为两部分：
+变量声明 ==&amp;gt; 通过var关键字定义的变量。
+函数声明 ==&amp;gt; 通过function关键字声明的函数。
+
+变量声明提升的特点:
+在声明变量的前面，可以使用这个变量
+
+1234567891">
+<meta property="og:updated_time" content="2016-11-01T13:44:03.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="04. 预解析">
+<meta name="twitter:description" content="预解析
+在代码整体执行之前，先解析一部分。
+预解析之后，代码才会从上往下依次整体执行，但是预解析执行过的代码不会重复执行。
+js中预解析会把声明部分的代码预先执行。
+
+声明相关的代码可以分为两部分：
+变量声明 ==&amp;gt; 通过var关键字定义的变量。
+函数声明 ==&amp;gt; 通过function关键字声明的函数。
+
+变量声明提升的特点:
+在声明变量的前面，可以使用这个变量
+
+1234567891">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","passage_end_tag":null,"enabled":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'wangshoujun'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://github.com/wangshoujun/blog/04day预解析20161101/"/>
+
+
+  <title> 04. 预解析 | 王守军的个人博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">王守军的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                04. 预解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T21:31:10+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="预解析"><a href="#预解析" class="headerlink" title="预解析"></a>预解析</h3><ul>
+<li>在代码整体执行之前，先解析一部分。</li>
+<li>预解析之后，代码才会从上往下依次整体执行，但是预解析执行过的代码不会重复执行。</li>
+<li>js中预解析会把声明部分的代码预先执行。</li>
+</ul>
+<h4 id="声明相关的代码可以分为两部分："><a href="#声明相关的代码可以分为两部分：" class="headerlink" title="声明相关的代码可以分为两部分："></a>声明相关的代码可以分为两部分：</h4><ol>
+<li>变量声明 ==&gt; 通过var关键字定义的变量。</li>
+<li>函数声明 ==&gt; 通过function关键字声明的函数。</li>
+</ol>
+<h4 id="变量声明提升的特点"><a href="#变量声明提升的特点" class="headerlink" title="变量声明提升的特点:"></a>变量声明提升的特点:</h4><ul>
+<li>在声明变量的前面，可以使用这个变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">console.log(a);</div><div class="line">var a = 10;</div><div class="line">console.log(a);</div><div class="line"></div><div class="line">/*</div><div class="line">* 预解析时执行的代码：</div><div class="line">* var a;</div><div class="line">*</div><div class="line">* 预解析之后执行的代码:</div><div class="line">*  console.log(a); //undefined</div><div class="line">*  a = 10;</div><div class="line">*  console.log(a); //10</div><div class="line">* */</div></pre></td></tr></table></figure>
+<h3 id="定义函数的方式："><a href="#定义函数的方式：" class="headerlink" title="定义函数的方式："></a>定义函数的方式：</h3><h4 id="1、函数声明式定义的特征"><a href="#1、函数声明式定义的特征" class="headerlink" title="1、函数声明式定义的特征"></a>1、函数声明式定义的特征</h4><ul>
+<li>以function关键字开头定义，并且定义在全局 或 直接嵌套在另一个函数内，这种形式定义的函数就是函数声明式。</li>
+<li>函数声明式定义的函数其他特征：</li>
+</ul>
+<ol>
+<li>会被预解析</li>
+<li>函数必须有名字</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 这是函数声明式</div><div class="line">function fn() &#123;  &#125;</div><div class="line"></div><div class="line">// 外面的是函数表达式</div><div class="line">(function () &#123;</div><div class="line">    // 里面的是函数声明式</div><div class="line">    function f() &#123; &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h4 id="2、函数表达式定义的特征"><a href="#2、函数表达式定义的特征" class="headerlink" title="2、函数表达式定义的特征"></a>2、函数表达式定义的特征</h4><ul>
+<li>不是以function关键字开头定义的函数,或者函数嵌套在非函数的代码块中, 都是函数表达式。</li>
+<li>函数表达式的其他特征：</li>
+</ul>
+<ol>
+<li>不会被预解析</li>
+<li>函数名字可有可无</li>
+<li>函数的名字只能在函数内部使用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 这是函数表达式</div><div class="line">var f = function () &#123; &#125;;</div><div class="line"></div><div class="line">&#123;</div><div class="line">    // 在非函数的代码块中定义的函数是函数表达式</div><div class="line">    function f() &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 这是函数表达式</div><div class="line">(function () &#123; &#125;)();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var fn = function f() &#123;</div><div class="line">    console.log(f); // 函数表达式的名字，只能在里面使用</div><div class="line">&#125;;</div><div class="line">fn();</div><div class="line">console.log(f);  // 函数表达式的名字，在外面无法使用</div></pre></td></tr></table></figure>
+<h4 id="函数声明提升"><a href="#函数声明提升" class="headerlink" title="函数声明提升"></a>函数声明提升</h4><ul>
+<li>函数声明提升的特点是，在函数声明的前面，可以调用这个函数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 函数声明可以提前调用</div><div class="line">fn(); // 1</div><div class="line">function fn() &#123;</div><div class="line">    console.log(1);</div><div class="line">&#125;</div><div class="line"></div><div class="line">(function () &#123;</div><div class="line">    // 函数声明可以提前调用</div><div class="line">    f();</div><div class="line">    function f() &#123;</div><div class="line">        console.log(111);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<h3 id="预解析时遇到的重名问题："><a href="#预解析时遇到的重名问题：" class="headerlink" title="预解析时遇到的重名问题："></a>预解析时遇到的重名问题：</h3><h4 id="关于预解析时重名处理的特点："><a href="#关于预解析时重名处理的特点：" class="headerlink" title="关于预解析时重名处理的特点："></a>关于预解析时重名处理的特点：</h4><ul>
+<li>凡是遇到重名的变量声明，那么忽略；</li>
+<li>凡是遇到重名的函数声明，当前的函数覆盖之前的。</li>
+</ul>
+<h4 id="1、预解析时如果遇到重复的变量声明，那么忽略。"><a href="#1、预解析时如果遇到重复的变量声明，那么忽略。" class="headerlink" title="1、预解析时如果遇到重复的变量声明，那么忽略。"></a>1、预解析时如果遇到重复的变量声明，那么忽略。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">console.log(a);</div><div class="line">var a = 1;</div><div class="line">var a = 100;</div><div class="line">console.log(a);</div><div class="line"></div><div class="line">/*</div><div class="line">* 预解析：</div><div class="line">* var a;</div><div class="line">* var a;  // 忽略</div><div class="line">*</div><div class="line">* 预解析之后：</div><div class="line">*  console.log(a); //undefined</div><div class="line">*  a = 1;</div><div class="line">*  a = 100;</div><div class="line">*  console.log(a); //100</div><div class="line">* */</div></pre></td></tr></table></figure>
+<h4 id="2、预解析时如果遇到重复的函数声明，保留后面的函数。"><a href="#2、预解析时如果遇到重复的函数声明，保留后面的函数。" class="headerlink" title="2、预解析时如果遇到重复的函数声明，保留后面的函数。"></a>2、预解析时如果遇到重复的函数声明，保留后面的函数。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">fn();</div><div class="line">function fn() &#123;</div><div class="line">    console.log(111);</div><div class="line">&#125;</div><div class="line">function fn() &#123;</div><div class="line">    console.log(222);</div><div class="line">&#125;</div><div class="line">fn();</div><div class="line"></div><div class="line">/*</div><div class="line">* 预解析：</div><div class="line">* 第一个fn函数声明</div><div class="line">* 第二个fn函数声明，发现重名，保留后面的函数</div><div class="line">*</div><div class="line">* 预解析之后：</div><div class="line">* fn(); //222</div><div class="line">* fn(); //222</div><div class="line">* */</div></pre></td></tr></table></figure>
+<h4 id="3、预解析时如果遇到变量与函数重名的情况，保留函数。"><a href="#3、预解析时如果遇到变量与函数重名的情况，保留函数。" class="headerlink" title="3、预解析时如果遇到变量与函数重名的情况，保留函数。"></a>3、预解析时如果遇到变量与函数重名的情况，保留函数。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">console.log(fn);</div><div class="line">var fn = 10;</div><div class="line">function fn() &#123;</div><div class="line">    console.log(111);</div><div class="line">&#125;</div><div class="line">var fn = 20;</div><div class="line">function fn() &#123;</div><div class="line">    console.log(222);</div><div class="line">&#125;</div><div class="line">console.log(fn);</div><div class="line"></div><div class="line">/*</div><div class="line">* 预解析：</div><div class="line">* var fn，</div><div class="line">* 第一个fn函数声明,发现重名，保留现在打印111的函数，</div><div class="line">* var fn; 发现重名，忽略，</div><div class="line">* 第二个fn函数声明，发现重名，保留现在打印222的函数，</div><div class="line">*</div><div class="line">* 预解析之后：</div><div class="line">* console.log(fn);  // 打印222的函数</div><div class="line">* fn = 10;</div><div class="line">* fn = 20;</div><div class="line">* console.log(fn);   // 打印20</div><div class="line">* */</div></pre></td></tr></table></figure>
+<h4 id="一个函数声明式的语法，写在非函数的代码块中，理论上这是函数表达式。但是对于这种函数，浏览器会预解析它的名字。"><a href="#一个函数声明式的语法，写在非函数的代码块中，理论上这是函数表达式。但是对于这种函数，浏览器会预解析它的名字。" class="headerlink" title="一个函数声明式的语法，写在非函数的代码块中，理论上这是函数表达式。但是对于这种函数，浏览器会预解析它的名字。"></a>一个函数声明式的语法，写在非函数的代码块中，理论上这是函数表达式。但是对于这种函数，浏览器会预解析它的名字。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">console.log(fn);</div><div class="line">&#123;</div><div class="line">    // 这是函数表达式</div><div class="line">    function fn() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">console.log(fn);</div><div class="line"></div><div class="line">/*</div><div class="line">* 预解析：</div><div class="line">* var fn;</div><div class="line">*</div><div class="line">* 预解析之后：</div><div class="line">* console.log(fn);  //undefined</div><div class="line">* fn = function fn() &#123;&#125;</div><div class="line">* console.log(fn);  //function fn() &#123;&#125;</div><div class="line">* */</div></pre></td></tr></table></figure>
+<h4 id="函数执行时内部也存在预解析"><a href="#函数执行时内部也存在预解析" class="headerlink" title="函数执行时内部也存在预解析"></a>函数执行时内部也存在预解析</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">function fn(par) &#123;</div><div class="line"></div><div class="line">    // 形参一定是在代码整体执行之前复的值。</div><div class="line">    console.log(par);</div><div class="line">    console.log(a);</div><div class="line">    console.log(f);</div><div class="line"></div><div class="line">    var a = 1;</div><div class="line">    var par = 111;</div><div class="line">    function f() &#123;</div><div class="line">        console.log(111);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">fn(10);</div><div class="line"></div><div class="line">    /*</div><div class="line">    * 函数调用时，会先给形参赋值</div><div class="line">    * var par = 10；</div><div class="line">    *</div><div class="line">    * 预解析：</div><div class="line">    * var a；</div><div class="line">    * var par；  // 发现重名，忽略</div><div class="line">    * f函数预解析；</div><div class="line">    *</div><div class="line">    * 预解析之后：</div><div class="line">    * console.log(par);  // 10</div><div class="line">    * console.log(a);  // undefined</div><div class="line">    * console.log(f); // f函数体</div><div class="line">    * */</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="作用域："><a href="#作用域：" class="headerlink" title="作用域："></a>作用域：</h3><ul>
+<li>变量的有效范围</li>
+<li>如何检测一个变量的作用域：在指定的区域内使用这个变量，如果不报错，说明这个变量的作用域包含此区域。</li>
+</ul>
+<h4 id="全局变量和局部变量："><a href="#全局变量和局部变量：" class="headerlink" title="全局变量和局部变量："></a>全局变量和局部变量：</h4><ol>
+<li><p>全局变量：在任何地方都可以使用的变量称之为全局变量</p>
+<blockquote>
+<p>如何定义全局变量：在函数外定义的变量都是全局变量。</p>
+</blockquote>
+</li>
+<li><p>局部变量：只有指定地方可以使用的变量称之为局部变量</p>
+<blockquote>
+<p>如何定义局部变量：在函数内声明的变量都是局部变量。</p>
+</blockquote>
+</li>
+<li><p>全局变量和局部变量就是通过作用域的大小来对变量进行的种类划分。</p>
+</li>
+</ol>
+<h4 id="函数作用域："><a href="#函数作用域：" class="headerlink" title="函数作用域："></a>函数作用域：</h4><ul>
+<li>只有函数能够划分变量的作用域，这种作用域的规则就叫函数作用域。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line">    var b = 1;</div><div class="line">&#125;)();</div><div class="line">console.log(b);</div></pre></td></tr></table></figure>
+<h4 id="块级作用域："><a href="#块级作用域：" class="headerlink" title="块级作用域："></a>块级作用域：</h4><ul>
+<li>凡是代码块就可以划分变量的作用域，这种作用域的规则就叫块级作用域。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    const obj = &#123;&#125;;</div><div class="line">    console.log(obj);</div><div class="line">&#125;</div><div class="line">console.log(obj);// 不能获取obj,报错</div></pre></td></tr></table></figure>
+<h4 id="词法作用域（静态作用域）："><a href="#词法作用域（静态作用域）：" class="headerlink" title="词法作用域（静态作用域）："></a>词法作用域（静态作用域）：</h4><ul>
+<li>如果在函数内访问一个变量，优先找局部变量和形参，</li>
+<li>如果没有找到，就去 <strong>定义该函数</strong> 的环境中查找</li>
+<li>直到全局为止。</li>
+</ul>
+<h4 id="块级作用域、函数作用域、词法作用域之间的区别："><a href="#块级作用域、函数作用域、词法作用域之间的区别：" class="headerlink" title="块级作用域、函数作用域、词法作用域之间的区别："></a>块级作用域、函数作用域、词法作用域之间的区别：</h4><ol>
+<li>块级作用域和函数作用域描述的是，什么东西可以划分变量的作用域</li>
+<li>词法作用域描述的是，变量的查找规则。</li>
+</ol>
+<h4 id="块级作用域、函数作用域、词法作用域之间的关系："><a href="#块级作用域、函数作用域、词法作用域之间的关系：" class="headerlink" title="块级作用域、函数作用域、词法作用域之间的关系："></a>块级作用域、函数作用域、词法作用域之间的关系：</h4><ol>
+<li>块级作用域 包含 函数作用域</li>
+<li>词法作用域 与 块级作用域&amp;函数作用域之间没有任何交集，他们从两个角度描述了作用域的规则。</li>
+</ol>
+<h4 id="动态作用域："><a href="#动态作用域：" class="headerlink" title="动态作用域："></a>动态作用域：</h4><ul>
+<li>如果在函数内访问一个变量，优先找局部变量和形参，</li>
+<li>如果没有找到，就去 <strong>调用该函数</strong> 的环境中查找</li>
+<li>直到全局为止。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var a = 100;</div><div class="line">var b = 9999999;</div><div class="line">(function () &#123;</div><div class="line">    var a = 200;</div><div class="line">    var b = 888888;</div><div class="line">    function fn() &#123;</div><div class="line">        var a = 1;</div><div class="line">        console.log(a);  // 1</div><div class="line">        console.log(b);  // 888888</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    (function () &#123;</div><div class="line">        var a = 100;</div><div class="line">        var b = 666666;</div><div class="line">        fn();</div><div class="line">    &#125;)();</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+      
+     
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/03day原型链20161101/" rel="next" title="03. 原型链">
+                <i class="fa fa-chevron-left"></i> 03. 原型链
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/05day闭包20161101/" rel="prev" title="05. 闭包">
+                05. 闭包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.png"
+               alt="王守军" />
+          <p class="site-author-name" itemprop="name">王守军</p>
+          <p class="site-description motion-element" itemprop="description">对前端一些知识点的总结</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangshoujun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/u/3822458864" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#预解析"><span class="nav-number">1.</span> <span class="nav-text">预解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明相关的代码可以分为两部分："><span class="nav-number">1.1.</span> <span class="nav-text">声明相关的代码可以分为两部分：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量声明提升的特点"><span class="nav-number">1.2.</span> <span class="nav-text">变量声明提升的特点:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义函数的方式："><span class="nav-number">2.</span> <span class="nav-text">定义函数的方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、函数声明式定义的特征"><span class="nav-number">2.1.</span> <span class="nav-text">1、函数声明式定义的特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、函数表达式定义的特征"><span class="nav-number">2.2.</span> <span class="nav-text">2、函数表达式定义的特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数声明提升"><span class="nav-number">2.3.</span> <span class="nav-text">函数声明提升</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预解析时遇到的重名问题："><span class="nav-number">3.</span> <span class="nav-text">预解析时遇到的重名问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于预解析时重名处理的特点："><span class="nav-number">3.1.</span> <span class="nav-text">关于预解析时重名处理的特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1、预解析时如果遇到重复的变量声明，那么忽略。"><span class="nav-number">3.2.</span> <span class="nav-text">1、预解析时如果遇到重复的变量声明，那么忽略。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、预解析时如果遇到重复的函数声明，保留后面的函数。"><span class="nav-number">3.3.</span> <span class="nav-text">2、预解析时如果遇到重复的函数声明，保留后面的函数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、预解析时如果遇到变量与函数重名的情况，保留函数。"><span class="nav-number">3.4.</span> <span class="nav-text">3、预解析时如果遇到变量与函数重名的情况，保留函数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一个函数声明式的语法，写在非函数的代码块中，理论上这是函数表达式。但是对于这种函数，浏览器会预解析它的名字。"><span class="nav-number">3.5.</span> <span class="nav-text">一个函数声明式的语法，写在非函数的代码块中，理论上这是函数表达式。但是对于这种函数，浏览器会预解析它的名字。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数执行时内部也存在预解析"><span class="nav-number">3.6.</span> <span class="nav-text">函数执行时内部也存在预解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域："><span class="nav-number">4.</span> <span class="nav-text">作用域：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量和局部变量："><span class="nav-number">4.1.</span> <span class="nav-text">全局变量和局部变量：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数作用域："><span class="nav-number">4.2.</span> <span class="nav-text">函数作用域：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块级作用域："><span class="nav-number">4.3.</span> <span class="nav-text">块级作用域：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词法作用域（静态作用域）："><span class="nav-number">4.4.</span> <span class="nav-text">词法作用域（静态作用域）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块级作用域、函数作用域、词法作用域之间的区别："><span class="nav-number">4.5.</span> <span class="nav-text">块级作用域、函数作用域、词法作用域之间的区别：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块级作用域、函数作用域、词法作用域之间的关系："><span class="nav-number">4.6.</span> <span class="nav-text">块级作用域、函数作用域、词法作用域之间的关系：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态作用域："><span class="nav-number">4.7.</span> <span class="nav-text">动态作用域：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王守军</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+<script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
