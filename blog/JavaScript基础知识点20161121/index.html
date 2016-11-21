@@ -1,0 +1,949 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="个人博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="JavaScript基本知识点JavaScript 基本组成
+JavaScript由几部分构成？
+ECMAScript、DOM、BOM
+
+
+
+数据类型数据类型有哪些？
+基本数据类型number、string、boolean、null、undefined
+
+复杂数据类型object
+
+
+ECMAScript内置对象有哪些？
+Array、Math、Date、Object、String、Number、B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础知识点">
+<meta property="og:url" content="https://github.com/wangshoujun/blog/JavaScript基础知识点20161121/index.html">
+<meta property="og:site_name" content="王守军的个人博客">
+<meta property="og:description" content="JavaScript基本知识点JavaScript 基本组成
+JavaScript由几部分构成？
+ECMAScript、DOM、BOM
+
+
+
+数据类型数据类型有哪些？
+基本数据类型number、string、boolean、null、undefined
+
+复杂数据类型object
+
+
+ECMAScript内置对象有哪些？
+Array、Math、Date、Object、String、Number、B">
+<meta property="og:updated_time" content="2016-11-21T14:02:47.391Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript基础知识点">
+<meta name="twitter:description" content="JavaScript基本知识点JavaScript 基本组成
+JavaScript由几部分构成？
+ECMAScript、DOM、BOM
+
+
+
+数据类型数据类型有哪些？
+基本数据类型number、string、boolean、null、undefined
+
+复杂数据类型object
+
+
+ECMAScript内置对象有哪些？
+Array、Math、Date、Object、String、Number、B">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","passage_end_tag":null,"enabled":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'wangshoujun'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://github.com/wangshoujun/blog/JavaScript基础知识点20161121/"/>
+
+
+  <title> JavaScript基础知识点 | 王守军的个人博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">王守军的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript基础知识点
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T22:02:12+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript基本知识点"><a href="#JavaScript基本知识点" class="headerlink" title="JavaScript基本知识点"></a>JavaScript基本知识点</h1><h2 id="JavaScript-基本组成"><a href="#JavaScript-基本组成" class="headerlink" title="JavaScript 基本组成"></a>JavaScript 基本组成</h2><ul>
+<li>JavaScript由几部分构成？<blockquote>
+<p>ECMAScript、DOM、BOM</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h4 id="数据类型有哪些？"><a href="#数据类型有哪些？" class="headerlink" title="数据类型有哪些？"></a>数据类型有哪些？</h4><ul>
+<li><p>基本数据类型<br>number、string、boolean、null、undefined</p>
+</li>
+<li><p>复杂数据类型<br>object</p>
+</li>
+</ul>
+<h4 id="ECMAScript内置对象有哪些？"><a href="#ECMAScript内置对象有哪些？" class="headerlink" title="ECMAScript内置对象有哪些？"></a>ECMAScript内置对象有哪些？</h4><ul>
+<li>Array、Math、Date、Object、String、Number、Boolean、Function、Error、RegExp</li>
+</ul>
+<h4 id="如何判断数据类型？"><a href="#如何判断数据类型？" class="headerlink" title="如何判断数据类型？"></a>如何判断数据类型？</h4><ul>
+<li>typeof </li>
+<li>typeof无法判断null类型的数据，反过来说typeof判断object类型的数据可能存在误判</li>
+<li>typeof可以判断Function类型的对象</li>
+</ul>
+<h2 id="基本类型与引用类型的赋值问题"><a href="#基本类型与引用类型的赋值问题" class="headerlink" title="基本类型与引用类型的赋值问题"></a>基本类型与引用类型的赋值问题</h2><h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><ul>
+<li>赋的是具体的值</li>
+</ul>
+<h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><ul>
+<li>赋的是对象的地址</li>
+</ul>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符 + %"></a>算术运算符 + %</h4><ul>
+<li>算术运算、字符串连接、把数据类型转换为number</li>
+<li>取余数</li>
+</ul>
+<h4 id="逻辑运算符-amp-amp"><a href="#逻辑运算符-amp-amp" class="headerlink" title="逻辑运算符 &amp;&amp; || !"></a>逻辑运算符 &amp;&amp; || !</h4><ul>
+<li>&amp;&amp; 从左往右依次把数据转换为boolean类型，如果是false，则返回对应的数据；<br>如果一直没有找到，则返回最后一个数据。</li>
+<li>|| 从左往右依次把数据转换为boolean类型，如果是true，则返回对应的数据；<br>如果一直没有找到，则返回最后一个数据。</li>
+<li>! 把数据转换为boolean类型，然后取反</li>
+</ul>
+<h4 id="相等运算符"><a href="#相等运算符" class="headerlink" title="相等运算符 == === != !=="></a>相等运算符 == === != !==</h4><ul>
+<li>=== 类型与值必须全等</li>
+<li>== 会先进行数据类型转换，然后比较（具体转换规则，下面有。）</li>
+</ul>
+<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符 ? :"></a>三元运算符 ? :</h4><ul>
+<li>问号前面的表达式结果为true，执行冒号前的表达式，否则执行后面的表达式。</li>
+</ul>
+<h2 id="布尔类型转换"><a href="#布尔类型转换" class="headerlink" title="布尔类型转换"></a>布尔类型转换</h2><h4 id="如何把数据转换为布尔类型？"><a href="#如何把数据转换为布尔类型？" class="headerlink" title="如何把数据转换为布尔类型？"></a>如何把数据转换为布尔类型？</h4><ul>
+<li>!! Boolean</li>
+</ul>
+<h4 id="哪些数据在转换为布尔类型时结果为false？"><a href="#哪些数据在转换为布尔类型时结果为false？" class="headerlink" title="哪些数据在转换为布尔类型时结果为false？"></a>哪些数据在转换为布尔类型时结果为false？</h4><ul>
+<li>0、undefined、null、NaN、’’</li>
+<li>所有的对象转换后为boolean类型，都为true</li>
+</ul>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h4 id="分支语句"><a href="#分支语句" class="headerlink" title="分支语句"></a>分支语句</h4><ul>
+<li>if else、switch case</li>
+</ul>
+<h4 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h4><ul>
+<li>for、while、do while、for in</li>
+</ul>
+<h4 id="break和continue的作用是什么？"><a href="#break和continue的作用是什么？" class="headerlink" title="break和continue的作用是什么？"></a>break和continue的作用是什么？</h4><ul>
+<li>break：结束循环。</li>
+<li>continue：跳出当前循环，继续下一次循环</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h4 id="创建方式"><a href="#创建方式" class="headerlink" title="创建方式"></a>创建方式</h4><ul>
+<li>函数声明式</li>
+<li>函数表达式</li>
+<li>Function</li>
+</ul>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
+<li>对函数中重复执行代码中的不同部分的抽象提取</li>
+<li>形参是用来接收实参传递过来的值。</li>
+<li>练习：写一个函数，函数接收一个参数并打印，如果参数的值是null或undefined，则不打印。</li>
+</ul>
+<h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><ul>
+<li>如果没有return语句，则为undefined，如果有则为对应的值。</li>
+</ul>
+<h4 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h4><ul>
+<li>arguments是一个代表实参的对象，</li>
+<li>可以通过下标的方式获取实参，</li>
+<li>可以通过length属性获取实参的个数</li>
+<li>arguments不是数组，它是一个对象，像这种拥有length属性，以下标存储数据的对象称为伪数组</li>
+<li>arguments 类似与这个样子：{ 0 : ‘ 实参1 ‘ , 1 : ‘ 实参2 ‘  , length: 2   }</li>
+</ul>
+<p>例1：计算任意数据的和<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function count( ) &#123;</div><div class="line">    var result = 0;</div><div class="line">    for ( var i = 0; i &lt; arguments.length; i++ ) &#123;</div><div class="line">        result = arguments[i] + result;</div><div class="line">    &#125;</div><div class="line">    console.log(result);</div><div class="line">&#125;</div><div class="line">count(1,2,3,4,5,234,3467,4564,234);</div></pre></td></tr></table></figure></p>
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><ul>
+<li>谁调用就指向谁。</li>
+</ul>
+<h4 id="错误抛出"><a href="#错误抛出" class="headerlink" title="错误抛出"></a>错误抛出</h4><ul>
+<li>throw 自定义抛出错误。</li>
+</ul>
+<p>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//练习：写一个函数，函数接收一个参数并打印，如果参数的值是null或undefined，则报错。</div><div class="line">    function con( par ) &#123;</div><div class="line">        if ( par == null ) &#123;</div><div class="line">            throw &apos;参数错误！&apos; + par;</div><div class="line">        &#125;</div><div class="line">        console.log( par );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    con(111);  //111</div><div class="line">    con(&apos;acb&apos;); //abc</div><div class="line">    con(null);  // Uncaught 参数错误！null</div></pre></td></tr></table></figure></p>
+<h2 id="debugger与断点"><a href="#debugger与断点" class="headerlink" title="debugger与断点"></a>debugger与断点</h2><h1 id="号"><a href="#号" class="headerlink" title="+号"></a>+号</h1><ul>
+<li>如果两边含有字符串或者对象，那么转换为string之后再相加</li>
+<li>除此之外，两数相加，转换为number之后再相加</li>
+</ul>
+<h1 id="号-1"><a href="#号-1" class="headerlink" title="-号"></a>-号</h1><ul>
+<li>把两边数据转换为number之后再相减</li>
+</ul>
+<h1 id="运算符比较规则"><a href="#运算符比较规则" class="headerlink" title="==运算符比较规则"></a>==运算符比较规则</h1><blockquote>
+<p>约定：非空数据类型表示null和undefined两种数据类型。</p>
+</blockquote>
+<ul>
+<li>任何数据和NaN相比结果都为false</li>
+<li>null等于undefined</li>
+<li>null和非空类型相比结果为false</li>
+<li>undefined和非空类型相比结果为false</li>
+<li>数字和非空类型比较，先转换为数字再比较</li>
+<li>布尔和非空类型比较，先转换为数字再比较</li>
+<li>对象与对象比较内存地址</li>
+<li>对象与字符串，对象先转换为字符串再比较</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>类型</th>
+<th>规律</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NaN</td>
+<td>任意类型</td>
+<td>false</td>
+</tr>
+<tr>
+<td>null</td>
+<td>undefined</td>
+<td>true</td>
+</tr>
+<tr>
+<td>null</td>
+<td>非空类型</td>
+<td>false</td>
+</tr>
+<tr>
+<td>undefined</td>
+<td>非空类型</td>
+<td>false</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>非空类型</td>
+<td>转换为数字再比较</td>
+</tr>
+<tr>
+<td>布尔</td>
+<td>非空类型</td>
+<td>转换为数字再比较</td>
+</tr>
+<tr>
+<td>对象</td>
+<td>对象</td>
+<td>内存地址比较</td>
+</tr>
+<tr>
+<td>对象</td>
+<td>字符串</td>
+<td>转换为字符串再比较</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+      
+     
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/Canvas20161120/" rel="next" title="Canvas">
+                <i class="fa fa-chevron-left"></i> Canvas
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.png"
+               alt="王守军" />
+          <p class="site-author-name" itemprop="name">王守军</p>
+          <p class="site-description motion-element" itemprop="description">对前端一些知识点的总结</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangshoujun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/u/3822458864" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript基本知识点"><span class="nav-number">1.</span> <span class="nav-text">JavaScript基本知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-基本组成"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript 基本组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据类型有哪些？"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">数据类型有哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ECMAScript内置对象有哪些？"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">ECMAScript内置对象有哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何判断数据类型？"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">如何判断数据类型？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型与引用类型的赋值问题"><span class="nav-number">1.3.</span> <span class="nav-text">基本类型与引用类型的赋值问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本类型"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用类型"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">引用类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">1.4.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算术运算符"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">算术运算符 + %</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑运算符-amp-amp"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">逻辑运算符 && || !</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相等运算符"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">相等运算符 == === != !==</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三元运算符"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">三元运算符 ? :</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔类型转换"><span class="nav-number">1.5.</span> <span class="nav-text">布尔类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何把数据转换为布尔类型？"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">如何把数据转换为布尔类型？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哪些数据在转换为布尔类型时结果为false？"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">哪些数据在转换为布尔类型时结果为false？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">1.6.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分支语句"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">分支语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环语句"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">循环语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#break和continue的作用是什么？"><span class="nav-number">1.6.0.3.</span> <span class="nav-text">break和continue的作用是什么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.7.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建方式"><span class="nav-number">1.7.0.1.</span> <span class="nav-text">创建方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数"><span class="nav-number">1.7.0.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#返回值"><span class="nav-number">1.7.0.3.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#arguments"><span class="nav-number">1.7.0.4.</span> <span class="nav-text">arguments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#this"><span class="nav-number">1.7.0.5.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误抛出"><span class="nav-number">1.7.0.6.</span> <span class="nav-text">错误抛出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debugger与断点"><span class="nav-number">1.8.</span> <span class="nav-text">debugger与断点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#号"><span class="nav-number">2.</span> <span class="nav-text">+号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#号-1"><span class="nav-number">3.</span> <span class="nav-text">-号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符比较规则"><span class="nav-number">4.</span> <span class="nav-text">==运算符比较规则</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王守军</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+<script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
