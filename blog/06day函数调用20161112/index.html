@@ -1,0 +1,852 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="个人博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="函数调用的几种方法1、函数调用模式
+函数调用模式  ==&amp;gt;  函数名( )
+内部的this指向全局对象(window)
+
+例1：12345function fn()&amp;#123;    console.log(this)&amp;#125;fn(); // 函数名调用，this指向window
+例2：12345678var obj = &amp;#123;    inFn: function () &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="06. 函数调用">
+<meta property="og:url" content="https://github.com/wangshoujun/blog/06day函数调用20161112/index.html">
+<meta property="og:site_name" content="王守军的个人博客">
+<meta property="og:description" content="函数调用的几种方法1、函数调用模式
+函数调用模式  ==&amp;gt;  函数名( )
+内部的this指向全局对象(window)
+
+例1：12345function fn()&amp;#123;    console.log(this)&amp;#125;fn(); // 函数名调用，this指向window
+例2：12345678var obj = &amp;#123;    inFn: function () &amp;#123">
+<meta property="og:updated_time" content="2016-11-21T14:20:37.452Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="06. 函数调用">
+<meta name="twitter:description" content="函数调用的几种方法1、函数调用模式
+函数调用模式  ==&amp;gt;  函数名( )
+内部的this指向全局对象(window)
+
+例1：12345function fn()&amp;#123;    console.log(this)&amp;#125;fn(); // 函数名调用，this指向window
+例2：12345678var obj = &amp;#123;    inFn: function () &amp;#123">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","passage_end_tag":null,"enabled":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'wangshoujun'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://github.com/wangshoujun/blog/06day函数调用20161112/"/>
+
+
+  <title> 06. 函数调用 | 王守军的个人博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">王守军的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                06. 函数调用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-12T00:00:00+08:00" content="2016-11-12">
+              2016-11-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="函数调用的几种方法"><a href="#函数调用的几种方法" class="headerlink" title="函数调用的几种方法"></a>函数调用的几种方法</h2><h3 id="1、函数调用模式"><a href="#1、函数调用模式" class="headerlink" title="1、函数调用模式"></a>1、函数调用模式</h3><blockquote>
+<p>函数调用模式  ==&gt;  函数名( )</p>
+<p>内部的this指向全局对象(window)</p>
+</blockquote>
+<p>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function fn()&#123;</div><div class="line">    console.log(this)</div><div class="line">&#125;</div><div class="line">fn();</div><div class="line"> // 函数名调用，this指向window</div></pre></td></tr></table></figure></p>
+<p>例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    inFn: function () &#123;</div><div class="line">        console.log(this);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">var outFn = obj.inFn;</div><div class="line">outFn();</div><div class="line">// 函数名调用，this指向window</div></pre></td></tr></table></figure></p>
+<h3 id="2、方法调用模式"><a href="#2、方法调用模式" class="headerlink" title="2、方法调用模式"></a>2、方法调用模式</h3><blockquote>
+<p>方法调用模式 == &gt;  对象 . 对象名( )   ||   对象[ 函数名 ]( )</p>
+<p>内部的this指向方法所属的对象</p>
+</blockquote>
+<p>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    fn: function () &#123;</div><div class="line">        console.log(this);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">obj.fn(); </div><div class="line">// 方法调用模式，this指向obj</div></pre></td></tr></table></figure></p>
+<p>例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function fn() &#123;</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line">var obj=&#123;&#125;;</div><div class="line">obj.f = fn;</div><div class="line">obj.f();</div><div class="line">// 方法调用模式，this指向obj</div></pre></td></tr></table></figure></p>
+<p>例3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var arr = &#123;</div><div class="line">    obje: &#123;</div><div class="line">        fn: function () &#123;</div><div class="line">            console.log(this);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">arr.obje.fn();  </div><div class="line">//方法调用模式，this指向fn所属的obje对象</div></pre></td></tr></table></figure></p>
+<p>例4：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var ob = &#123;</div><div class="line">    111: function () &#123;</div><div class="line">        console.log(this);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">ob[111](); </div><div class="line">//方法调用模式，this指向111所属的ob对象</div></pre></td></tr></table></figure></p>
+<h3 id="3、构造器调用"><a href="#3、构造器调用" class="headerlink" title="3、构造器调用"></a>3、构造器调用</h3><blockquote>
+<p>构造器调用模式 == &gt; new 函数名( )  ||  new   对象.函数名( )  ||  new  对象[ 函数名 ]( )</p>
+<p>内部的this指向新创建的实例</p>
+</blockquote>
+<p>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">function Person(age) &#123;</div><div class="line">    this.age = age;</div><div class="line">    console.log(this);</div><div class="line">    console.log(this instanceof Person);</div><div class="line">&#125;</div><div class="line">new Person(16); // 这是构造器模式，内部的this指向新创建的实例</div></pre></td></tr></table></figure></p>
+<p>例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    fn: function () &#123;</div><div class="line">        console.log(this);</div><div class="line">        console.log(this instanceof obj.fn);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">new obj.fn();  </div><div class="line">// 这是构造器模式，内部的this指向新创建的实例</div></pre></td></tr></table></figure></p>
+<h3 id="4、间接调用模式"><a href="#4、间接调用模式" class="headerlink" title="4、间接调用模式"></a>4、间接调用模式</h3><blockquote>
+<p>间接调用模式1 == &gt;  函数名.call( )  ||  对象.函数名.call( )   ||  new  对象[ 函数名 ].call( )</p>
+<p>间接调用模式2 == &gt;  函数名.apply( )  ||  对象.函数名.apply( )  ||  new  对象 [ 函数名 ].apply( )</p>
+<p>内部的this指向自定义的对象，如果传入空，this指向全局对象window。</p>
+</blockquote>
+<p>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Fn() &#123;</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line">Fn.apply(Fn);  </div><div class="line">// 间接调用模式，this指向Fn</div></pre></td></tr></table></figure></p>
+<p>例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">    f : function () &#123;</div><div class="line">        console.log(this);</div><div class="line">    &#125;,</div><div class="line">    2 : function () &#123;</div><div class="line">        console.log(this);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">o.f.call([1,2]);  // 间接，this指向[1,2]</div><div class="line">o[2].call([1,2,3,4]); // 间接，this指向[1,2,3,4]</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="call-、apply-和-bind"><a href="#call-、apply-和-bind" class="headerlink" title="call( )、apply( ) 和 bind()"></a>call( )、apply( ) 和 bind()</h3><blockquote>
+<p>这三个方法都是来自于Function.prototype上，所以所有的函数都可以使用。<br>他们有一个共同点，就是可以指定函数执行时内部this的指向。</p>
+</blockquote>
+<h4 id="call、apply、bind的区别："><a href="#call、apply、bind的区别：" class="headerlink" title="call、apply、bind的区别："></a>call、apply、bind的区别：</h4><ul>
+<li>call和apply的区别在于参数的方式。</li>
+<li>bind和前两个方法的区别在于，bind不会马上执行函数，而是返回一个函数，供以后调用。 </li>
+</ul>
+<h4 id="call、apply、bind的语法："><a href="#call、apply、bind的语法：" class="headerlink" title="call、apply、bind的语法："></a>call、apply、bind的语法：</h4><ul>
+<li>语法：函数名.call( 指定函数执行时的this指向 ，实参1, 实参2….);</li>
+<li>语法：函数名.apply( 指定函数执行时的this指向 ，[实参1, 实参2….] );</li>
+<li>语法：var fn = 函数名.bind( this指向，要绑定的实参1, 要绑定的实参2…. );</li>
+</ul>
+<p>例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function fn() &#123;</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 通过fn调用call方法，call方法内部会返过来调用fn，并且指定fn执行时内部的this为数组。</div><div class="line">fn.call([1,2,3,4,5]);</div><div class="line">fn.apply(new Date);</div><div class="line">fn.apply(new RegExp);</div></pre></td></tr></table></figure></p>
+<p>例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    fn: function () &#123;</div><div class="line">        console.log(this);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">obj.fn.call([&apos;a&apos;]);</div><div class="line">obj.fn.call(&#123;val:1&#125;);</div><div class="line">obj.fn.apply(new Boolean);</div></pre></td></tr></table></figure></p>
+<p>例3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function fn() &#123;</div><div class="line">    console.log(this);</div><div class="line">&#125;</div><div class="line"></div><div class="line">fn.call(&#123;val:1&#125;); // 内部的this指向字面量对象</div><div class="line"></div><div class="line">fn.call(1);  // 内部的this指向1的包装对象</div><div class="line">fn.apply(&apos;a&apos;); // 内部的this指向&apos;a&apos;的包装对象</div><div class="line"></div><div class="line">fn.apply(null); // 内部的this指向window</div><div class="line">fn.call(undefined); // 内部的this指向window</div><div class="line">fn.call(); // 内部的this指向window</div></pre></td></tr></table></figure></p>
+<h4 id="⑴-call-用法："><a href="#⑴-call-用法：" class="headerlink" title="⑴ call( )用法："></a>⑴ call( )用法：</h4><ul>
+<li>语法：函数名.call( 自定义的this指向, 实参1，实参2, 实参3, 实参4…. );</li>
+<li>注意：第一个参数只是为了指定函数执行时this的指向，并不会作为参数传入进去。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function add(a, b)  &#123;</div><div class="line">    console.log(a + b);</div><div class="line">&#125;</div><div class="line">add.call(300, 10, 20);  // 结果为30</div></pre></td></tr></table></figure>
+<h4 id="⑵-apply-用法："><a href="#⑵-apply-用法：" class="headerlink" title="⑵ apply( )用法："></a>⑵ apply( )用法：</h4><ul>
+<li>语法1：函数名.apply( 自定义的this指向, [实参1，实参2, 实参3, 实参4….] );</li>
+<li>语法2：函数名.apply( this指向，{0: 实参1, 1: 实参2, length: 2} )</li>
+<li>注意：第一个参数只是为了指定函数执行时this的指向，并不会作为参数传入进去,第二个参数要求是数组或伪数组，apply会自动把数组中的内容平铺后传入到函数中。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function add(a,b) &#123;</div><div class="line">    console.log(a + b);</div><div class="line">&#125;</div><div class="line">add.apply(300, [50, 50]);  // 结果100</div><div class="line">add.apply(300, &#123; 0:20, 1:20, length:2 &#125;);  // 结果40</div></pre></td></tr></table></figure>
+<h4 id="⑶-bind-用法："><a href="#⑶-bind-用法：" class="headerlink" title="⑶ bind( )用法："></a>⑶ bind( )用法：</h4><ul>
+<li>语法：var fn = 函数名.bind( this指向，要绑定的实参1, 要绑定的实参2…. );</li>
+<li>返回值：函数的copy版本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">  var baseNumber = 0;</div><div class="line">  var obj = &#123;baseNumber:100&#125;;</div><div class="line">  function add(a, b, c) &#123;</div><div class="line">      console.log(this.baseNumber + a + b + c);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  var fn = add.bind(obj);</div><div class="line"></div><div class="line">  fn(1,2,3);  //106</div><div class="line">  fn(1,2,54);  //157</div><div class="line"></div><div class="line">// bind绑定实参的使用：</div><div class="line">// 如果前两个参数一直是10，</div><div class="line">// 就可以通过bind绑定死，以后就不用传了</div><div class="line">var fn = add.bind(obj, 10, 10); // 相当于固定形参a为10，形参b为10</div><div class="line">fn(50);  // 调用fn时，只需再传形参c的值即可  170</div><div class="line">fn(30); // 调用fn时，只需再传形参c的值即可   150</div></pre></td></tr></table></figure>
+<h3 id="toString的使用方法："><a href="#toString的使用方法：" class="headerlink" title="toString的使用方法："></a>toString的使用方法：</h3><ul>
+<li>Object.prototype.toString执行时根据内部的this，返回一个这样的字符串:” [object  this的类型]”</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">console.log(Object.prototype.toString()); </div><div class="line"> // 返回&apos;[object Object]&apos;</div><div class="line"></div><div class="line">console.log(Object.prototype.toString.call([1,2])); </div><div class="line">// 因为[1,2]是Array类型的对象，返回&apos;[object Array]&apos;</div><div class="line"></div><div class="line">console.log(Object.prototype.toString.call(Array)); </div><div class="line">// 因为Array是Function类型的对象，返回&apos;[object Function]&apos;</div><div class="line"></div><div class="line">console.log(Object.prototype.toString.call(Math)); </div><div class="line">// 因为Array是Function类型的对象，返回&apos;[object Function]&apos;</div></pre></td></tr></table></figure>
+<ul>
+<li>内置的9大构造函数，它们的prototype显式原型对象中，都定义了自己的toString方法，所以他们的实例，会优先使用自己的toString。</li>
+<li>如果想要通过Object原型上的toString获取某个对象的类型，为了防止意外，必须得这样做 ： Object.prototype.toString.call( 要判断的对象 );</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// arr会调用优先调用Array.prototype上的toString</div><div class="line">var arr = [1,2,3];</div><div class="line">console.log(arr.toString());  //1,2,3</div><div class="line"></div><div class="line">// fn会调用优先调用Function.prototype上的toString</div><div class="line">function fn() &#123;&#125;</div><div class="line">console.log(fn.toString());  //function fn() &#123;&#125;</div><div class="line"></div><div class="line">// new Boolean会调用优先调用Boolean.prototype上的toString</div><div class="line">console.log((new Boolean).toString());    //false</div><div class="line"></div><div class="line"> console.log(Math.toString());  //[object Math]</div></pre></td></tr></table></figure>
+<h3 id="方法借用"><a href="#方法借用" class="headerlink" title="方法借用"></a>方法借用</h3><ol>
+<li>push方法可以给数组添加属性值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var arr = [];</div><div class="line">arr.push(10);</div><div class="line">console.log(arr);</div></pre></td></tr></table></figure>
+<ol>
+<li>借用数组的push方法，给obj对象按照下标添加属性值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;&#125;;</div><div class="line">[].push.call(obj, 10);</div><div class="line">console.log(obj);</div></pre></td></tr></table></figure>
+<ol>
+<li>借用数组的pop方法，删除伪数组o对象最后一个下标属性值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var arr = &#123;</div><div class="line">    0: 10,</div><div class="line">    1: 20,</div><div class="line">    2: 30,</div><div class="line">    length: 3</div><div class="line">&#125;;</div><div class="line">[].pop.call(arr);</div><div class="line">console.log(arr);</div></pre></td></tr></table></figure>
+<h3 id="构造函数调用"><a href="#构造函数调用" class="headerlink" title="构造函数调用"></a>构造函数调用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function Person(name, age) &#123;</div><div class="line">    this.name = name;</div><div class="line">    this.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 目的：给Student的实例也添加name和age属性</div><div class="line">function Student(name, age) &#123;</div><div class="line"></div><div class="line">    /* Student执行时，this指向小红(即小红就是this，this就是小红)，</div><div class="line">       那么我想要Person执行时，它里面的this指向小红，</div><div class="line">       就可以通过call指定Person里面的this为小红，</div><div class="line">       因为小红就是this，所以给call传this。*/</div><div class="line"></div><div class="line">    Person.call( this, name, age );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var xiaohong = new Student(&apos;小红&apos;, 16);</div><div class="line">console.log(xiaohong);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+      
+     
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/05day闭包20161109/" rel="next" title="05. 闭包">
+                <i class="fa fa-chevron-left"></i> 05. 闭包
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/Canvas20161120/" rel="prev" title="Canvas">
+                Canvas <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.png"
+               alt="王守军" />
+          <p class="site-author-name" itemprop="name">王守军</p>
+          <p class="site-description motion-element" itemprop="description">对前端一些知识点的总结</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangshoujun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/u/3822458864" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用的几种方法"><span class="nav-number">1.</span> <span class="nav-text">函数调用的几种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、函数调用模式"><span class="nav-number">1.1.</span> <span class="nav-text">1、函数调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、方法调用模式"><span class="nav-number">1.2.</span> <span class="nav-text">2、方法调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、构造器调用"><span class="nav-number">1.3.</span> <span class="nav-text">3、构造器调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、间接调用模式"><span class="nav-number">1.4.</span> <span class="nav-text">4、间接调用模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call-、apply-和-bind"><span class="nav-number">1.5.</span> <span class="nav-text">call( )、apply( ) 和 bind()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#call、apply、bind的区别："><span class="nav-number">1.5.1.</span> <span class="nav-text">call、apply、bind的区别：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#call、apply、bind的语法："><span class="nav-number">1.5.2.</span> <span class="nav-text">call、apply、bind的语法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑴-call-用法："><span class="nav-number">1.5.3.</span> <span class="nav-text">⑴ call( )用法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑵-apply-用法："><span class="nav-number">1.5.4.</span> <span class="nav-text">⑵ apply( )用法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#⑶-bind-用法："><span class="nav-number">1.5.5.</span> <span class="nav-text">⑶ bind( )用法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toString的使用方法："><span class="nav-number">1.6.</span> <span class="nav-text">toString的使用方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法借用"><span class="nav-number">1.7.</span> <span class="nav-text">方法借用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数调用"><span class="nav-number">1.8.</span> <span class="nav-text">构造函数调用</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王守军</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+<script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

@@ -84,15 +84,28 @@
 
 
 
-<meta name="description" content="对前端一些知识点的总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王守军的个人博客">
-<meta property="og:url" content="https://github.com/wangshoujun/archives/2016/index.html">
+<meta name="description" content="闭包：广义闭包：
+可以访问非自身变量的函数。从这种角度来说，所有的函数都是闭包。
+还有一种说法是，使用了非自身变量的函数，就是闭包。
+
+12345678910111213var globalA = 10;// 这个函数，可以使用非自身的变量，那么这是一个闭包。function fn() &amp;#123;    console.log(globalA);&amp;#125;(function () &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="05. 闭包">
+<meta property="og:url" content="https://github.com/wangshoujun/blog/05day闭包20161109/index.html">
 <meta property="og:site_name" content="王守军的个人博客">
-<meta property="og:description" content="对前端一些知识点的总结">
+<meta property="og:description" content="闭包：广义闭包：
+可以访问非自身变量的函数。从这种角度来说，所有的函数都是闭包。
+还有一种说法是，使用了非自身变量的函数，就是闭包。
+
+12345678910111213var globalA = 10;// 这个函数，可以使用非自身的变量，那么这是一个闭包。function fn() &amp;#123;    console.log(globalA);&amp;#125;(function () &amp;#123;">
+<meta property="og:updated_time" content="2016-11-21T14:20:28.185Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王守军的个人博客">
-<meta name="twitter:description" content="对前端一些知识点的总结">
+<meta name="twitter:title" content="05. 闭包">
+<meta name="twitter:description" content="闭包：广义闭包：
+可以访问非自身变量的函数。从这种角度来说，所有的函数都是闭包。
+还有一种说法是，使用了非自身变量的函数，就是闭包。
+
+12345678910111213var globalA = 10;// 这个函数，可以使用非自身的变量，那么这是一个闭包。function fn() &amp;#123;    console.log(globalA);&amp;#125;(function () &amp;#123;">
 
 
 
@@ -113,10 +126,10 @@
 
 
 
-  <link rel="canonical" href="https://github.com/wangshoujun/archives/2016/"/>
+  <link rel="canonical" href="https://github.com/wangshoujun/blog/05day闭包20161109/"/>
 
 
-  <title> 归档 | 王守军的个人博客 </title>
+  <title> 05. 闭包 | 王守军的个人博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +150,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  page-archive  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -389,362 +402,152 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 9 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/JavaScript基础知识点20161121/" itemprop="url">
-              
-                <span itemprop="name">JavaScript基础知识点</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-21T22:02:12+08:00"
-              content="2016-11-21" >
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/Canvas20161120/" itemprop="url">
-              
-                <span itemprop="name">Canvas</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-20T13:17:41+08:00"
-              content="2016-11-20" >
-          11-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/06day函数调用20161112/" itemprop="url">
-              
-                <span itemprop="name">06. 函数调用</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-12T00:00:00+08:00"
-              content="2016-11-12" >
-          11-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/05day闭包20161109/" itemprop="url">
-              
-                <span itemprop="name">05. 闭包</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-09T00:00:00+08:00"
-              content="2016-11-09" >
-          11-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/04day预解析20161106/" itemprop="url">
-              
-                <span itemprop="name">04. 预解析</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-06T00:00:00+08:00"
-              content="2016-11-06" >
-          11-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/03day原型链20161105/" itemprop="url">
-              
-                <span itemprop="name">03. 原型链</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-05T00:00:00+08:00"
-              content="2016-11-05" >
-          11-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/02day继承方式20161104/" itemprop="url">
-              
-                <span itemprop="name">02. 继承方式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-04T00:00:00+08:00"
-              content="2016-11-04" >
-          11-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/01day面对对象20161103/" itemprop="url">
-              
-                <span itemprop="name">01. 面对对象</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-03T00:00:00+08:00"
-              content="2016-11-03" >
-          11-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/blog/hello-world20161101/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-01T21:18:12+08:00"
-              content="2016-11-01" >
-          11-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                05. 闭包
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-09T00:00:00+08:00" content="2016-11-09">
+              2016-11-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="闭包："><a href="#闭包：" class="headerlink" title="闭包："></a>闭包：</h3><h4 id="广义闭包："><a href="#广义闭包：" class="headerlink" title="广义闭包："></a>广义闭包：</h4><ul>
+<li>可以访问非自身变量的函数。从这种角度来说，所有的函数都是闭包。</li>
+<li>还有一种说法是，使用了非自身变量的函数，就是闭包。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var globalA = 10;</div><div class="line">// 这个函数，可以使用非自身的变量，那么这是一个闭包。</div><div class="line">function fn() &#123;</div><div class="line">    console.log(globalA);</div><div class="line">&#125;</div><div class="line"></div><div class="line">(function () &#123;</div><div class="line">    var val = 10;</div><div class="line">    // 这个函数，可以使用非自身的变量，那么这是一个闭包。</div><div class="line">    function f() &#123;</div><div class="line">        console.log(val);</div><div class="line">    &#125;</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
+<h4 id="狭义闭包："><a href="#狭义闭包：" class="headerlink" title="狭义闭包："></a>狭义闭包：</h4><ul>
+<li>可以访问非自身局部变量的函数。从这种角度来说，函数内的函数才是闭包。</li>
+<li>还有一种说法是，使用了非自身局部变量的函数，就是闭包。</li>
+<li>综上：可以访问非自身局部变量的函数就是闭包。函数内的函数就是闭包。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var globalA = 10;</div><div class="line">// 这个函数，只能使用全局变量和自身的局部变量，所以不是闭包。</div><div class="line">function fn() &#123;</div><div class="line">    console.log(globalA);</div><div class="line">&#125;</div><div class="line"></div><div class="line">(function () &#123;</div><div class="line">    var val = 10;</div><div class="line">    // 这个函数可以使用自调函数中的局部变量，所以是闭包</div><div class="line">    function f() &#123;</div><div class="line">        console.log(val);</div><div class="line">    &#125;</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
+<h4 id="闭包的特点："><a href="#闭包的特点：" class="headerlink" title="闭包的特点："></a>闭包的特点：</h4><ul>
+<li>利用闭包，可以在任何地方操作一个局部变量。</li>
+</ul>
+<hr>
+<h3 id="变量的生命周期："><a href="#变量的生命周期：" class="headerlink" title="变量的生命周期："></a>变量的生命周期：</h3><blockquote>
+<p>一个变量从定义开始，到释放结束，中间存活的过程就叫变量的生命周期。</p>
+</blockquote>
+<h4 id="全局变量的生命周期："><a href="#全局变量的生命周期：" class="headerlink" title="全局变量的生命周期："></a>全局变量的生命周期：</h4><ul>
+<li>从定义开始，到页面被关闭结束，就是全局变量的生命周期。</li>
+<li>这个变量会一直存在，直到页面被关闭。</li>
+</ul>
+<h4 id="局部变量的生命周期："><a href="#局部变量的生命周期：" class="headerlink" title="局部变量的生命周期："></a>局部变量的生命周期：</h4><ul>
+<li>一般情况下从定义开始，到函数执行完毕结束，就是局部变量的生命周期</li>
+<li>特殊情况下可以通过闭包，可以延长局部变量的生命周期。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function fn() &#123;</div><div class="line">    var a = 1;</div><div class="line">    // 当fn执行完毕后，因为匿名函数需要使用局部变量a,所以造成a变量没有释放。</div><div class="line">    // 总结：闭包可以延长局部变量的生命周期</div><div class="line">    return function () &#123;</div><div class="line">        console.log(a);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var f = fn();</div><div class="line">f();</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+      
+     
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/04day预解析20161106/" rel="next" title="04. 预解析">
+                <i class="fa fa-chevron-left"></i> 04. 预解析
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/06day函数调用20161112/" rel="prev" title="06. 函数调用">
+                06. 函数调用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -752,6 +555,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -771,8 +578,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/me.png"
@@ -828,6 +644,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包："><span class="nav-number">1.</span> <span class="nav-text">闭包：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#广义闭包："><span class="nav-number">1.1.</span> <span class="nav-text">广义闭包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#狭义闭包："><span class="nav-number">1.2.</span> <span class="nav-text">狭义闭包：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包的特点："><span class="nav-number">1.3.</span> <span class="nav-text">闭包的特点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量的生命周期："><span class="nav-number">2.</span> <span class="nav-text">变量的生命周期：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量的生命周期："><span class="nav-number">2.1.</span> <span class="nav-text">全局变量的生命周期：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部变量的生命周期："><span class="nav-number">2.2.</span> <span class="nav-text">局部变量的生命周期：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -931,11 +758,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   
