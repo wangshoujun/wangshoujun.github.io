@@ -1,0 +1,881 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="个人博客" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="原型链的概念
+对象继承的所有原型对象，称之为这个对象的原型链。
+
+什么类型的对象既有prototype属性又有proto属性？
+函数类型的对象。
+
+直接继承Object.prototype的对象有哪几种？
+new Object 、{} 、Math 、 函数.prototype(显式原型)
+
+直接继承Function.prototype的对象有哪几种？
+内置的构造函数、自定义函数、new Funct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面对对象重点">
+<meta property="og:url" content="https://github.com/wangshoujun/blog/面对对象重点20161126/index.html">
+<meta property="og:site_name" content="王守军的个人博客">
+<meta property="og:description" content="原型链的概念
+对象继承的所有原型对象，称之为这个对象的原型链。
+
+什么类型的对象既有prototype属性又有proto属性？
+函数类型的对象。
+
+直接继承Object.prototype的对象有哪几种？
+new Object 、{} 、Math 、 函数.prototype(显式原型)
+
+直接继承Function.prototype的对象有哪几种？
+内置的构造函数、自定义函数、new Funct">
+<meta property="og:updated_time" content="2016-11-26T00:34:40.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面对对象重点">
+<meta name="twitter:description" content="原型链的概念
+对象继承的所有原型对象，称之为这个对象的原型链。
+
+什么类型的对象既有prototype属性又有proto属性？
+函数类型的对象。
+
+直接继承Object.prototype的对象有哪几种？
+new Object 、{} 、Math 、 函数.prototype(显式原型)
+
+直接继承Function.prototype的对象有哪几种？
+内置的构造函数、自定义函数、new Funct">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","passage_end_tag":null,"enabled":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'wangshoujun'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://github.com/wangshoujun/blog/面对对象重点20161126/"/>
+
+
+  <title> 面对对象重点 | 王守军的个人博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">王守军的个人博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>High一下</a> </li>
+
+
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                面对对象重点
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-26T08:34:05+08:00" content="2016-11-26">
+              2016-11-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="原型链的概念"><a href="#原型链的概念" class="headerlink" title="原型链的概念"></a>原型链的概念</h4><blockquote>
+<p>对象继承的所有原型对象，称之为这个对象的原型链。</p>
+</blockquote>
+<h4 id="什么类型的对象既有prototype属性又有proto属性？"><a href="#什么类型的对象既有prototype属性又有proto属性？" class="headerlink" title="什么类型的对象既有prototype属性又有proto属性？"></a>什么类型的对象既有prototype属性又有<strong>proto</strong>属性？</h4><blockquote>
+<p>函数类型的对象。</p>
+</blockquote>
+<h4 id="直接继承Object-prototype的对象有哪几种？"><a href="#直接继承Object-prototype的对象有哪几种？" class="headerlink" title="直接继承Object.prototype的对象有哪几种？"></a>直接继承Object.prototype的对象有哪几种？</h4><blockquote>
+<p>new Object 、{} 、Math 、 函数.prototype(显式原型)</p>
+</blockquote>
+<h4 id="直接继承Function-prototype的对象有哪几种？"><a href="#直接继承Function-prototype的对象有哪几种？" class="headerlink" title="直接继承Function.prototype的对象有哪几种？"></a>直接继承Function.prototype的对象有哪几种？</h4><blockquote>
+<p>内置的构造函数、自定义函数、new Function</p>
+</blockquote>
+<h4 id="instanceof运算符的运算规则："><a href="#instanceof运算符的运算规则：" class="headerlink" title="instanceof运算符的运算规则："></a>instanceof运算符的运算规则：</h4><blockquote>
+<p>判断左边对象的原型链中有没有右边构造函数的显式原型对象。</p>
+</blockquote>
+<h4 id="for-in语句遍历对象时，继承的属性能不能遍历出来"><a href="#for-in语句遍历对象时，继承的属性能不能遍历出来" class="headerlink" title="for in语句遍历对象时，继承的属性能不能遍历出来"></a>for in语句遍历对象时，继承的属性能不能遍历出来</h4><blockquote>
+<p>能</p>
+</blockquote>
+<h4 id="in运算符作用"><a href="#in运算符作用" class="headerlink" title="in运算符作用"></a>in运算符作用</h4><blockquote>
+<p>判断一个对象能否使用某个属性。</p>
+</blockquote>
+<h4 id="delete运算符作用"><a href="#delete运算符作用" class="headerlink" title="delete运算符作用"></a>delete运算符作用</h4><blockquote>
+<p>删掉对象的属性</p>
+</blockquote>
+<h4 id="hasOwnProperty和propertyIsEnumerable的异同？"><a href="#hasOwnProperty和propertyIsEnumerable的异同？" class="headerlink" title="hasOwnProperty和propertyIsEnumerable的异同？"></a>hasOwnProperty和propertyIsEnumerable的异同？</h4><blockquote>
+<p>hasOwnProperty用来判断一个对象自己有没有某个属性；<br>propertyIsEnumerable不光要判断一个对象自己有没有某个属性，<br>还要进一步判断这个属性是不是可枚举的。</p>
+</blockquote>
+<h4 id="函数的length属性和arguments对象的length属性有什么区别？"><a href="#函数的length属性和arguments对象的length属性有什么区别？" class="headerlink" title="函数的length属性和arguments对象的length属性有什么区别？"></a>函数的length属性和arguments对象的length属性有什么区别？</h4><blockquote>
+<p>函数的length用来获取形参的个数；<br>arguments的length用来获取实参的个数。</p>
+</blockquote>
+<h4 id="Function-和-eval-的作用有什么共同点？"><a href="#Function-和-eval-的作用有什么共同点？" class="headerlink" title="Function 和 eval 的作用有什么共同点？"></a>Function 和 eval 的作用有什么共同点？</h4><blockquote>
+<p>可以把字符串解析成代码执行。</p>
+</blockquote>
+<h4 id="静态成员-类成员"><a href="#静态成员-类成员" class="headerlink" title="静态成员(类成员)"></a>静态成员(类成员)</h4><blockquote>
+<p>添加给构造函数自己的属性和方法。</p>
+</blockquote>
+<h4 id="实例成员"><a href="#实例成员" class="headerlink" title="实例成员"></a>实例成员</h4><blockquote>
+<p>添加给实例自己的属性和方法，以及原型对象中的属性和方法。</p>
+</blockquote>
+<h2 id="预解析"><a href="#预解析" class="headerlink" title="预解析"></a>预解析</h2><h4 id="预解析都做了什么"><a href="#预解析都做了什么" class="headerlink" title="预解析都做了什么"></a>预解析都做了什么</h4><blockquote>
+<p> 变量声明、函数声明、语法检测</p>
+</blockquote>
+<h4 id="预解析时变量与变量重名时如何处理"><a href="#预解析时变量与变量重名时如何处理" class="headerlink" title="预解析时变量与变量重名时如何处理"></a>预解析时变量与变量重名时如何处理</h4><blockquote>
+<p>后面的忽略。</p>
+</blockquote>
+<h4 id="预解析时变量与函数重名时如何处理"><a href="#预解析时变量与函数重名时如何处理" class="headerlink" title="预解析时变量与函数重名时如何处理"></a>预解析时变量与函数重名时如何处理</h4><blockquote>
+<p>保留函数。</p>
+</blockquote>
+<h4 id="预解析时函数与函数重名时如何处理"><a href="#预解析时函数与函数重名时如何处理" class="headerlink" title="预解析时函数与函数重名时如何处理"></a>预解析时函数与函数重名时如何处理</h4><blockquote>
+<p>保留后面的函数。</p>
+</blockquote>
+<h4 id="函数执行时，内部是否也存在预解析"><a href="#函数执行时，内部是否也存在预解析" class="headerlink" title="函数执行时，内部是否也存在预解析"></a>函数执行时，内部是否也存在预解析</h4><blockquote>
+<p>存在</p>
+</blockquote>
+<h4 id="函数执行时，形参赋值在预解析之前还是之后"><a href="#函数执行时，形参赋值在预解析之前还是之后" class="headerlink" title="函数执行时，形参赋值在预解析之前还是之后"></a>函数执行时，形参赋值在预解析之前还是之后</h4><blockquote>
+<p>预解析之前</p>
+</blockquote>
+<h4 id="写在非函数代码块中的函数声明式，会被预解析吗"><a href="#写在非函数代码块中的函数声明式，会被预解析吗" class="headerlink" title="写在非函数代码块中的函数声明式，会被预解析吗"></a>写在非函数代码块中的函数声明式，会被预解析吗</h4><blockquote>
+<p>在最新的浏览器中，函数名会被预解析；<br>老版本浏览器(除了火狐)，函数整体会被预解析。</p>
+</blockquote>
+<h4 id="函数声明式的特点"><a href="#函数声明式的特点" class="headerlink" title="函数声明式的特点"></a>函数声明式的特点</h4><blockquote>
+<p>function开头定义，要么在全局定义，要么直接嵌套在另一个函数中；<br>会被预解析；<br>必须有名字；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function shengMingShi() &#123;&#125;</div><div class="line">(function () &#123; </div><div class="line">    function shengMingShi() &#123;&#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="函数表达式的特点"><a href="#函数表达式的特点" class="headerlink" title="函数表达式的特点"></a>函数表达式的特点</h4><blockquote>
+<p>要么在表达式中，要么在语句中，<br>不会被预解析；<br>名字是可选；<br>函数名只能在内部使用；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var biaoDaShi = function () &#123;&#125;;</div><div class="line">biaoDaShi(function biaoDaShi() &#123;&#125;);</div><div class="line">(function biaoDaShi&#123;&#125;());</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="特殊情况的函数表达式"><a href="#特殊情况的函数表达式" class="headerlink" title="特殊情况的函数表达式"></a>特殊情况的函数表达式</h4><blockquote>
+<p>写在非函数的代码块中。<br>名字是必须的；<br>名字会被预解析；<br>函数名可以在外面使用；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    function teShuBiaoDaShi() &#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h4 id="作用域-1"><a href="#作用域-1" class="headerlink" title="作用域"></a>作用域</h4><blockquote>
+<p>变量的有效范围。</p>
+</blockquote>
+<h4 id="函数作用域规则"><a href="#函数作用域规则" class="headerlink" title="函数作用域规则"></a>函数作用域规则</h4><blockquote>
+<p>只有函数可以划分变量的作用域。</p>
+</blockquote>
+<h4 id="块级作用域规则"><a href="#块级作用域规则" class="headerlink" title="块级作用域规则"></a>块级作用域规则</h4><blockquote>
+<p>凡是代码块就可以划分变量的作用域。</p>
+</blockquote>
+<h4 id="词法作用域-静态作用域-规则"><a href="#词法作用域-静态作用域-规则" class="headerlink" title="词法作用域(静态作用域)规则"></a>词法作用域(静态作用域)规则</h4><blockquote>
+<p>访问一个变量，优先在当前执行环境中去找，<br>找不到则去产生该执行环境的环境中去找，依次类推，直到全局执行环境。</p>
+</blockquote>
+<h4 id="全局变量的概念和定义方式"><a href="#全局变量的概念和定义方式" class="headerlink" title="全局变量的概念和定义方式"></a>全局变量的概念和定义方式</h4><blockquote>
+<p>概念：在任何地方可以使用的变量。<br>定义方式：在函数外声明的变量，或者没有var定义的变量(这种定义变量的方式以后会废弃)。</p>
+</blockquote>
+<h4 id="局部变量的概念和定义方式"><a href="#局部变量的概念和定义方式" class="headerlink" title="局部变量的概念和定义方式"></a>局部变量的概念和定义方式</h4><blockquote>
+<p>概念：只在声明的地方可以使用的变量。<br>定义方式：在函数内声明的变量。</p>
+</blockquote>
+<h4 id="变量的生命周期"><a href="#变量的生命周期" class="headerlink" title="变量的生命周期"></a>变量的生命周期</h4><blockquote>
+<p>变量从定义开始，到释放结束，中间存活的过程。</p>
+</blockquote>
+<h4 id="全局变量的生命周期"><a href="#全局变量的生命周期" class="headerlink" title="全局变量的生命周期"></a>全局变量的生命周期</h4><blockquote>
+<p>从定义开始，到页面卸载被消亡，中间存活的过程。</p>
+</blockquote>
+<h4 id="局部变量的生命周期"><a href="#局部变量的生命周期" class="headerlink" title="局部变量的生命周期"></a>局部变量的生命周期</h4><blockquote>
+<p>一般情况下是从函数执行后，变量的声明开始，到函数执行完毕结束，<br>但是也有二般情况，可能存在闭包引用了这个变量，那么这个变量的生命周期和闭包一样长。</p>
+</blockquote>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><blockquote>
+<p>可访问非自身局部变量的函数(函数内的函数)就是闭包。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+      
+     
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/JavaScript基础知识点20161121/" rel="next" title="JavaScript基础知识点">
+                <i class="fa fa-chevron-left"></i> JavaScript基础知识点
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.png"
+               alt="王守军" />
+          <p class="site-author-name" itemprop="name">王守军</p>
+          <p class="site-description motion-element" itemprop="description">对前端一些知识点的总结</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangshoujun" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/u/3822458864" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#原型链的概念"><span class="nav-number">1.</span> <span class="nav-text">原型链的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么类型的对象既有prototype属性又有proto属性？"><span class="nav-number">2.</span> <span class="nav-text">什么类型的对象既有prototype属性又有proto属性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接继承Object-prototype的对象有哪几种？"><span class="nav-number">3.</span> <span class="nav-text">直接继承Object.prototype的对象有哪几种？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接继承Function-prototype的对象有哪几种？"><span class="nav-number">4.</span> <span class="nav-text">直接继承Function.prototype的对象有哪几种？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#instanceof运算符的运算规则："><span class="nav-number">5.</span> <span class="nav-text">instanceof运算符的运算规则：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for-in语句遍历对象时，继承的属性能不能遍历出来"><span class="nav-number">6.</span> <span class="nav-text">for in语句遍历对象时，继承的属性能不能遍历出来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#in运算符作用"><span class="nav-number">7.</span> <span class="nav-text">in运算符作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#delete运算符作用"><span class="nav-number">8.</span> <span class="nav-text">delete运算符作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hasOwnProperty和propertyIsEnumerable的异同？"><span class="nav-number">9.</span> <span class="nav-text">hasOwnProperty和propertyIsEnumerable的异同？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的length属性和arguments对象的length属性有什么区别？"><span class="nav-number">10.</span> <span class="nav-text">函数的length属性和arguments对象的length属性有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Function-和-eval-的作用有什么共同点？"><span class="nav-number">11.</span> <span class="nav-text">Function 和 eval 的作用有什么共同点？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态成员-类成员"><span class="nav-number">12.</span> <span class="nav-text">静态成员(类成员)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例成员"><span class="nav-number">13.</span> <span class="nav-text">实例成员</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预解析"><span class="nav-number"></span> <span class="nav-text">预解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预解析都做了什么"><span class="nav-number">1.</span> <span class="nav-text">预解析都做了什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预解析时变量与变量重名时如何处理"><span class="nav-number">2.</span> <span class="nav-text">预解析时变量与变量重名时如何处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预解析时变量与函数重名时如何处理"><span class="nav-number">3.</span> <span class="nav-text">预解析时变量与函数重名时如何处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预解析时函数与函数重名时如何处理"><span class="nav-number">4.</span> <span class="nav-text">预解析时函数与函数重名时如何处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数执行时，内部是否也存在预解析"><span class="nav-number">5.</span> <span class="nav-text">函数执行时，内部是否也存在预解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数执行时，形参赋值在预解析之前还是之后"><span class="nav-number">6.</span> <span class="nav-text">函数执行时，形参赋值在预解析之前还是之后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写在非函数代码块中的函数声明式，会被预解析吗"><span class="nav-number">7.</span> <span class="nav-text">写在非函数代码块中的函数声明式，会被预解析吗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数声明式的特点"><span class="nav-number">8.</span> <span class="nav-text">函数声明式的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数表达式的特点"><span class="nav-number">9.</span> <span class="nav-text">函数表达式的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊情况的函数表达式"><span class="nav-number">10.</span> <span class="nav-text">特殊情况的函数表达式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number"></span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域-1"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数作用域规则"><span class="nav-number">2.</span> <span class="nav-text">函数作用域规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块级作用域规则"><span class="nav-number">3.</span> <span class="nav-text">块级作用域规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词法作用域-静态作用域-规则"><span class="nav-number">4.</span> <span class="nav-text">词法作用域(静态作用域)规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量的概念和定义方式"><span class="nav-number">5.</span> <span class="nav-text">全局变量的概念和定义方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部变量的概念和定义方式"><span class="nav-number">6.</span> <span class="nav-text">局部变量的概念和定义方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的生命周期"><span class="nav-number">7.</span> <span class="nav-text">变量的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量的生命周期"><span class="nav-number">8.</span> <span class="nav-text">全局变量的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部变量的生命周期"><span class="nav-number">9.</span> <span class="nav-text">局部变量的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">10.</span> <span class="nav-text">闭包</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王守军</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+<script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
